@@ -17,8 +17,9 @@ jobs:
       # GitHub does not unzip uploaded zip files, so do it here
       - name: Unzip project files
         run: |
-          shopt -s nullglob
-          for z in *.zip; do echo "unzipping $z"; unzip -oq "$z"; done
+          for z in "mclite 2.0.zip" "mclite.2.0.zip"; do
+            if [ -f "$z" ]; then echo "unzipping $z"; unzip -oq "$z"; fi
+          done
           find . -maxdepth 3 -not -path './.git*' -not -path '*/__MACOSX*' | head -60
 
       - name: Locate project
